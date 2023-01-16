@@ -1,36 +1,40 @@
-import React, { useState, useEffect } from "react";
-import "../styles/App.css";
+import React, { useState, useEffect, Fragment } from "react";
+import '../styles/App.css';
+
 import List from "./List";
+
 const App = () => {
-  //code here
-  const [val, setValue] = useState("");
+
+  const [value, setValue] = useState(0);
   const [list, setList] = useState([]);
-  const changeHandler = (event) => {
-    setValue(event.target.value);
+
+
+  const onButtonClick = () => {
+   setList(Array.from({ length: `${value}` }, (v, i) => i))
   };
-  const addhandler = () => {
-    setList([...list, val]);
+
+
+  const onInputChange = (e) => {
+    setValue(e.target.value);
   };
 
   return (
     <div id="main">
-      <input id="input" value={val} onChange={changeHandler} />
-      <button id="button" onClick={addhandler}>
-        Click
-      </button>
+
+      <input id="input" onChange={onInputChange} />
+      <button id="button" onClick={onButtonClick}>Click</button>
       <ul id="list">
-        {list.map((element, index) => {
-          return (
-            <li className="items" key={element + index}>
-              {element}
-            </li>
-          );
-        })}
-        {/*<List listx={list} />*/}
+
+        {
+
+          list.map((item,i) => {
+            return <List listx={i+1}/>
+          })
+        }
+
       </ul>
     </div>
   );
 };
-
 
 export default App;
