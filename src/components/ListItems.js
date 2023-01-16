@@ -1,6 +1,9 @@
 import React from "react";
 
 const ListItems = (props) => {
-  return <li className="items">Hello the value is {props.valuex}</li>;
+  return;
+  <React.Fragment>
+    <li className="items">{props.valuex}</li>;
+  </React.Fragment>;
 };
 export default ListItems;
